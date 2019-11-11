@@ -14,7 +14,7 @@ class LibroController extends Controller
      */
     public function index()
     {
-        $libros = Libro::orderBy(id, 'DESC')->paginate(3);
+        $libros = Libro::orderBy('id', 'DESC')->paginate(3);
         return view('Libro.index', compact('libros'));
     }
 
@@ -49,7 +49,7 @@ class LibroController extends Controller
         );
         Libro::create($request->all());
         return redirect()
-            ->route('Libro.index')
+            ->route('libro.index')
             ->with('succes', 'Registro creado satiscactoriamente');   
     }
 
@@ -99,7 +99,7 @@ class LibroController extends Controller
         );
         Libro::find($id)->update($request->all());
         return redirect()
-            ->route('Libro.index')
+            ->route('libro.index')
             ->with('succes', 'Registro actualizado satisfactoriamente');
     }
 
@@ -113,7 +113,7 @@ class LibroController extends Controller
     {
         Libro::find($id)->delete();
         return redirect()
-            ->route('Libro.index')
+            ->route('libro.index')
             ->with('success','Registro eliminado satisfactoriamente');
     }
 }
